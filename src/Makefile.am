@@ -8,7 +8,7 @@ if ENABLE_WALLET
 noinst_LIBRARIES += libbitcoin_wallet.a
 endif
 
-bin_PROGRAMS = bitcoind bitcoin-cli
+bin_PROGRAMS = falckoind falckoin-cli
 
 SUBDIRS = . $(BUILD_QT) $(BUILD_TEST)
 DIST_SUBDIRS = . qt test
@@ -92,29 +92,29 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_common_a_SOURCES = $(top_srcdir)/src/obj/build.h
 #
 
-# bitcoind binary #
-bitcoind_LDADD = libbitcoin_server.a libbitcoin_cli.a libbitcoin_common.a leveldb/libleveldb.a leveldb/libmemenv.a \
+# falckoind binary #
+falckoind_LDADD = libbitcoin_server.a libbitcoin_cli.a libbitcoin_common.a leveldb/libleveldb.a leveldb/libmemenv.a \
   $(BOOST_LIBS)
 if ENABLE_WALLET
-bitcoind_LDADD += libbitcoin_wallet.a
+falckoind_LDADD += libbitcoin_wallet.a
 endif
-bitcoind_SOURCES = bitcoind.cpp
+falckoind_SOURCES = bitcoind.cpp
 #
 
 if TARGET_WINDOWS
-bitcoind_SOURCES += bitcoind-res.rc
+falckoind_SOURCES += bitcoind-res.rc
 endif
 
 AM_CPPFLAGS += $(BDB_CPPFLAGS)
-bitcoind_LDADD += $(BDB_LIBS)
+falckoind_LDADD += $(BDB_LIBS)
 
-# bitcoin-cli binary #
-bitcoin_cli_LDADD = libbitcoin_cli.a libbitcoin_common.a $(BOOST_LIBS)
-bitcoin_cli_SOURCES = bitcoin-cli.cpp
+# falckoin-cli binary #
+falckoin_cli_LDADD = libbitcoin_cli.a libbitcoin_common.a $(BOOST_LIBS)
+falckoin_cli_SOURCES = bitcoin-cli.cpp
 #
 
 if TARGET_WINDOWS
-bitcoin_cli_SOURCES += bitcoin-cli-res.rc
+falckoin_cli_SOURCES += bitcoin-cli-res.rc
 endif
 
 leveldb/libleveldb.a: leveldb/libmemenv.a

@@ -71,22 +71,22 @@ BitcoinGUI::BitcoinGUI(bool fIsTestnet, QWidget *parent) :
 
     if (!fIsTestnet)
     {
-        setWindowTitle(tr("Bitcoin Core") + " - " + tr("Wallet"));
+        setWindowTitle(tr("Falckoin Core") + " - " + tr("Wallet"));
 #ifndef Q_OS_MAC
-        QApplication::setWindowIcon(QIcon(":icons/bitcoin"));
-        setWindowIcon(QIcon(":icons/bitcoin"));
+        QApplication::setWindowIcon(QIcon(":icons/falckoin"));
+        setWindowIcon(QIcon(":icons/falckoin"));
 #else
-        MacDockIconHandler::instance()->setIcon(QIcon(":icons/bitcoin"));
+        MacDockIconHandler::instance()->setIcon(QIcon(":icons/falckoin"));
 #endif
     }
     else
     {
-        setWindowTitle(tr("Bitcoin Core") + " - " + tr("Wallet") + " " + tr("[testnet]"));
+        setWindowTitle(tr("Falckoin Core") + " - " + tr("Wallet") + " " + tr("[testnet]"));
 #ifndef Q_OS_MAC
-        QApplication::setWindowIcon(QIcon(":icons/bitcoin_testnet"));
-        setWindowIcon(QIcon(":icons/bitcoin_testnet"));
+        QApplication::setWindowIcon(QIcon(":icons/falckoin_testnet"));
+        setWindowIcon(QIcon(":icons/falckoin_testnet"));
 #else
-        MacDockIconHandler::instance()->setIcon(QIcon(":icons/bitcoin_testnet"));
+        MacDockIconHandler::instance()->setIcon(QIcon(":icons/falckoin_testnet"));
 #endif
     }
 
@@ -195,14 +195,14 @@ void BitcoinGUI::createActions(bool fIsTestnet)
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a Bitcoin address"));
+    sendCoinsAction->setStatusTip(tr("Send coins to a Falckoin address"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     tabGroup->addAction(sendCoinsAction);
 
     receiveCoinsAction = new QAction(QIcon(":/icons/receiving_addresses"), tr("&Receive"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and bitcoin: URIs)"));
+    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and falckoin: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
     receiveCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
@@ -231,10 +231,10 @@ void BitcoinGUI::createActions(bool fIsTestnet)
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
     if (!fIsTestnet)
-        aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About Bitcoin Core"), this);
+        aboutAction = new QAction(QIcon(":/icons/falckoin"), tr("&About Falckoin Core"), this);
     else
-        aboutAction = new QAction(QIcon(":/icons/bitcoin_testnet"), tr("&About Bitcoin Core"), this);
-    aboutAction->setStatusTip(tr("Show information about Bitcoin"));
+        aboutAction = new QAction(QIcon(":/icons/falckoin_testnet"), tr("&About Falckoin Core"), this);
+    aboutAction->setStatusTip(tr("Show information about Falckoin"));
     aboutAction->setMenuRole(QAction::AboutRole);
 #if QT_VERSION < 0x050000
     aboutQtAction = new QAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), this);
@@ -244,12 +244,12 @@ void BitcoinGUI::createActions(bool fIsTestnet)
     aboutQtAction->setStatusTip(tr("Show information about Qt"));
     aboutQtAction->setMenuRole(QAction::AboutQtRole);
     optionsAction = new QAction(QIcon(":/icons/options"), tr("&Options..."), this);
-    optionsAction->setStatusTip(tr("Modify configuration options for Bitcoin"));
+    optionsAction->setStatusTip(tr("Modify configuration options for Falckoin"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
     if (!fIsTestnet)
-        toggleHideAction = new QAction(QIcon(":/icons/bitcoin"), tr("&Show / Hide"), this);
+        toggleHideAction = new QAction(QIcon(":/icons/falckoin"), tr("&Show / Hide"), this);
     else
-        toggleHideAction = new QAction(QIcon(":/icons/bitcoin_testnet"), tr("&Show / Hide"), this);
+        toggleHideAction = new QAction(QIcon(":/icons/falckoin_testnet"), tr("&Show / Hide"), this);
     toggleHideAction->setStatusTip(tr("Show or hide the main Window"));
 
     encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Wallet..."), this);
@@ -260,9 +260,9 @@ void BitcoinGUI::createActions(bool fIsTestnet)
     changePassphraseAction = new QAction(QIcon(":/icons/key"), tr("&Change Passphrase..."), this);
     changePassphraseAction->setStatusTip(tr("Change the passphrase used for wallet encryption"));
     signMessageAction = new QAction(QIcon(":/icons/edit"), tr("Sign &message..."), this);
-    signMessageAction->setStatusTip(tr("Sign messages with your Bitcoin addresses to prove you own them"));
+    signMessageAction->setStatusTip(tr("Sign messages with your Falckoin addresses to prove you own them"));
     verifyMessageAction = new QAction(QIcon(":/icons/transaction_0"), tr("&Verify message..."), this);
-    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Bitcoin addresses"));
+    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Falckoin addresses"));
 
     openRPCConsoleAction = new QAction(QIcon(":/icons/debugwindow"), tr("&Debug window"), this);
     openRPCConsoleAction->setStatusTip(tr("Open debugging and diagnostic console"));
@@ -273,7 +273,7 @@ void BitcoinGUI::createActions(bool fIsTestnet)
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(QApplication::style()->standardIcon(QStyle::SP_FileIcon), tr("Open URI..."), this);
-    openAction->setStatusTip(tr("Open a bitcoin: URI or payment request"));
+    openAction->setStatusTip(tr("Open a falckoin: URI or payment request"));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -400,12 +400,12 @@ void BitcoinGUI::createTrayIcon(bool fIsTestnet)
 
     if (!fIsTestnet)
     {
-        trayIcon->setToolTip(tr("Bitcoin client"));
+        trayIcon->setToolTip(tr("Falckoin client"));
         trayIcon->setIcon(QIcon(":/icons/toolbar"));
     }
     else
     {
-        trayIcon->setToolTip(tr("Bitcoin client") + " " + tr("[testnet]"));
+        trayIcon->setToolTip(tr("Falckoin client") + " " + tr("[testnet]"));
         trayIcon->setIcon(QIcon(":/icons/toolbar_testnet"));
     }
 
@@ -538,7 +538,7 @@ void BitcoinGUI::setNumConnections(int count)
     default: icon = ":/icons/connect_4"; break;
     }
     labelConnectionsIcon->setPixmap(QIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to Bitcoin network", "", count));
+    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to Falckoin network", "", count));
 }
 
 void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
@@ -637,7 +637,7 @@ void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
 
 void BitcoinGUI::message(const QString &title, const QString &message, unsigned int style, bool *ret)
 {
-    QString strTitle = tr("Bitcoin"); // default title
+    QString strTitle = tr("Falckoin"); // default title
     // Default to information icon
     int nMBoxIcon = QMessageBox::Information;
     int nNotifyIcon = Notificator::Information;
@@ -663,7 +663,7 @@ void BitcoinGUI::message(const QString &title, const QString &message, unsigned 
             break;
         }
     }
-    // Append title to "Bitcoin - "
+    // Append title to "Falckoin - "
     if (!msgType.isEmpty())
         strTitle += " - " + msgType;
 

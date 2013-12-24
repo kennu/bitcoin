@@ -6,7 +6,7 @@ define(_CLIENT_VERSION_REVISION, 99)
 define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_IS_RELEASE, false)
 define(_COPYRIGHT_YEAR, 2013)
-AC_INIT([Bitcoin],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[info@bitcoin.org],[bitcoin])
+AC_INIT([Falckoin],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[falckoin@kfalck.net],[falckoin])
 AC_CONFIG_AUX_DIR([src/build-aux])
 AC_CONFIG_MACRO_DIR([src/m4])
 AC_CANONICAL_HOST
@@ -71,7 +71,7 @@ AC_ARG_WITH([qt],
   [use_qt=auto])
 AC_DEFUN([BITCOIN_QT_FAIL],[
   if test "x$use_qt" = "xauto"; then
-    AC_MSG_WARN([$1; bitcoin-qt frontend will not be built])
+    AC_MSG_WARN([$1; falckoin-qt frontend will not be built])
     use_qt=no
   else
     AC_MSG_ERROR([$1])
@@ -769,6 +769,6 @@ AC_SUBST(BUILD_QT)
 AC_SUBST(BUILD_TEST)
 AC_SUBST(BUILD_TEST_QT)
 AC_CONFIG_FILES([Makefile src/Makefile src/test/Makefile src/qt/Makefile src/qt/test/Makefile share/setup.nsi share/qt/Info.plist])
-AC_CONFIG_FILES([qa/pull-tester/run-bitcoind-for-test.sh],[chmod +x qa/pull-tester/run-bitcoind-for-test.sh])
+AC_CONFIG_FILES([qa/pull-tester/run-falckoind-for-test.sh],[chmod +x qa/pull-tester/run-falckoind-for-test.sh])
 AC_CONFIG_FILES([qa/pull-tester/build-tests.sh],[chmod +x qa/pull-tester/build-tests.sh])
 AC_OUTPUT

@@ -61,7 +61,7 @@ bool AppInit(int argc, char* argv[])
         //
         // Parameters
         //
-        // If Qt is used, parameters/bitcoin.conf are parsed in qt/bitcoin.cpp's main()
+        // If Qt is used, parameters/falckoin.conf are parsed in qt/bitcoin.cpp's main()
         ParseParameters(argc, argv);
         if (!boost::filesystem::is_directory(GetDataDir(false)))
         {
@@ -77,14 +77,14 @@ bool AppInit(int argc, char* argv[])
 
         if (mapArgs.count("-?") || mapArgs.count("--help"))
         {
-            // First part of help message is specific to bitcoind / RPC client
-            std::string strUsage = _("Bitcoin Core Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n\n" +
+            // First part of help message is specific to falckoind / RPC client
+            std::string strUsage = _("Falckoin Core Daemon") + " " + _("version") + " " + FormatFullVersion() + "\n\n" +
                 _("Usage:") + "\n" +
-                  "  bitcoind [options]                     " + _("Start Bitcoin server") + "\n" +
-                _("Usage (deprecated, use bitcoin-cli):") + "\n" +
-                  "  bitcoind [options] <command> [params]  " + _("Send command to Bitcoin server") + "\n" +
-                  "  bitcoind [options] help                " + _("List commands") + "\n" +
-                  "  bitcoind [options] help <command>      " + _("Get help for a command") + "\n";
+                  "  falckoind [options]                     " + _("Start Falckoin server") + "\n" +
+                _("Usage (deprecated, use falckoin-cli):") + "\n" +
+                  "  falckoind [options] <command> [params]  " + _("Send command to Falckoin server") + "\n" +
+                  "  falckoind [options] help                " + _("List commands") + "\n" +
+                  "  falckoind [options] help <command>      " + _("Get help for a command") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
             strUsage += "\n" + HelpMessageCli(false);
@@ -96,7 +96,7 @@ bool AppInit(int argc, char* argv[])
         // Command-line RPC
         bool fCommandLine = false;
         for (int i = 1; i < argc; i++)
-            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "bitcoin:"))
+            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "falckoin:"))
                 fCommandLine = true;
 
         if (fCommandLine)
