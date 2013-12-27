@@ -35,7 +35,7 @@ public:
         vAlertPubKey = ParseHex("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
         nDefaultPort = 8444;
         nRPCPort = 8443;
-        bnProofOfWorkLimit = CBigNum(~uint256(0) >> 32);
+        bnProofOfWorkLimit = CBigNum(~uint256(0) >> 24);
         nSubsidyHalvingInterval = 210000;
 
         // Build the genesis block. Note that the output of the genesis coinbase cannot
@@ -57,12 +57,39 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1231006505;
-        genesis.nBits    = 0x1d00ffff;
-        genesis.nNonce   = 2083236893;
+        genesis.nTime    = 1388095200;
+        //genesis.nBits    = 0x1d00ffff;
+        genesis.nBits    = 0x1d0fffff;
+        genesis.nNonce   = 562317185;
 
+        /*
+        CBigNum bnTarget;
+        bnTarget.SetCompact(genesis.nBits);
+        uint256 uiTarget = bnTarget.getuint256();
+        int attempts = 0;
+        time_t st = time(NULL);
+        int elapsed;
+        cout << "Target: " << bnTarget.ToString() << endl;
+        cout << "Target: " << uiTarget.ToString() << endl;
+        while (1) {
+            attempts++;
+            genesis.nNonce = (unsigned int) GetRandInt(INT_MAX);
+            hashGenesisBlock = genesis.GetHash();
+            if (hashGenesisBlock <= uiTarget) {
+                break;
+            }
+            if (attempts % 100 == 0) {
+                elapsed = time(NULL) - st;
+                cout << (elapsed > 0 ? attempts/elapsed : 0) << " h/s " << attempts << ": " << hashGenesisBlock.ToString() << "\r";
+                cout.flush();
+            }
+        }
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0xda14b1d7441f2d59fa9ec93932143b4d8af62548592f999018c6cc2e83074d6e"));
+        genesis.hashMerkleRoot = genesis.BuildMerkleTree();
+        cout << endl << "Found valid nonce: " << genesis.nNonce << " hash " << hashGenesisBlock.ToString() << " merkle " << genesis.hashMerkleRoot.ToString() << endl;
+        */
+        hashGenesisBlock = genesis.GetHash();
+        assert(hashGenesisBlock == uint256("0x00000005588b9415ba093416210b6a45cb03b35ba947e2bcae06b5d99f6770fa"));
         assert(genesis.hashMerkleRoot == uint256("0xf126f5b562730aa831cab90a762cc80e8ca51e5e0ae5083ab28a02e2159bc411"));
 
         vSeeds.push_back(CDNSSeedData("falckoin.kfalck.net", "falckoin.kfalck.net"));
@@ -124,7 +151,7 @@ public:
         genesis.nTime = 1296688602;
         genesis.nNonce = 414098458;
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0xc500a74b871ba26fd467ac101bfdc78f296a97b0f654a7485dbd673c40cfb7db"));
+        assert(hashGenesisBlock == uint256("0x4a8f85bde848170f44d93a7f877256d6cab578a26a8855d59465de4a6b64cbe3"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
