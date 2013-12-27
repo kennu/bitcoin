@@ -73,20 +73,20 @@ BitcoinGUI::BitcoinGUI(bool fIsTestnet, QWidget *parent) :
     {
         setWindowTitle(tr("Falckoin Core") + " - " + tr("Wallet"));
 #ifndef Q_OS_MAC
-        QApplication::setWindowIcon(QIcon(":icons/falckoin"));
-        setWindowIcon(QIcon(":icons/falckoin"));
+        QApplication::setWindowIcon(QIcon(":icons/bitcoin"));
+        setWindowIcon(QIcon(":icons/bitcoin"));
 #else
-        MacDockIconHandler::instance()->setIcon(QIcon(":icons/falckoin"));
+        MacDockIconHandler::instance()->setIcon(QIcon(":icons/bitcoin"));
 #endif
     }
     else
     {
         setWindowTitle(tr("Falckoin Core") + " - " + tr("Wallet") + " " + tr("[testnet]"));
 #ifndef Q_OS_MAC
-        QApplication::setWindowIcon(QIcon(":icons/falckoin_testnet"));
-        setWindowIcon(QIcon(":icons/falckoin_testnet"));
+        QApplication::setWindowIcon(QIcon(":icons/bitcoin_testnet"));
+        setWindowIcon(QIcon(":icons/bitcoin_testnet"));
 #else
-        MacDockIconHandler::instance()->setIcon(QIcon(":icons/falckoin_testnet"));
+        MacDockIconHandler::instance()->setIcon(QIcon(":icons/bitcoin_testnet"));
 #endif
     }
 
@@ -231,9 +231,9 @@ void BitcoinGUI::createActions(bool fIsTestnet)
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
     if (!fIsTestnet)
-        aboutAction = new QAction(QIcon(":/icons/falckoin"), tr("&About Falckoin Core"), this);
+        aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About Falckoin Core"), this);
     else
-        aboutAction = new QAction(QIcon(":/icons/falckoin_testnet"), tr("&About Falckoin Core"), this);
+        aboutAction = new QAction(QIcon(":/icons/bitcoin_testnet"), tr("&About Falckoin Core"), this);
     aboutAction->setStatusTip(tr("Show information about Falckoin"));
     aboutAction->setMenuRole(QAction::AboutRole);
 #if QT_VERSION < 0x050000
@@ -247,9 +247,9 @@ void BitcoinGUI::createActions(bool fIsTestnet)
     optionsAction->setStatusTip(tr("Modify configuration options for Falckoin"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
     if (!fIsTestnet)
-        toggleHideAction = new QAction(QIcon(":/icons/falckoin"), tr("&Show / Hide"), this);
+        toggleHideAction = new QAction(QIcon(":/icons/bitcoin"), tr("&Show / Hide"), this);
     else
-        toggleHideAction = new QAction(QIcon(":/icons/falckoin_testnet"), tr("&Show / Hide"), this);
+        toggleHideAction = new QAction(QIcon(":/icons/bitcoin_testnet"), tr("&Show / Hide"), this);
     toggleHideAction->setStatusTip(tr("Show or hide the main Window"));
 
     encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Wallet..."), this);

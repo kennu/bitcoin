@@ -86,4 +86,4 @@ qa/pull-tester/build-tests.sh
 qa/pull-tester/run-falckoind-for-test.sh
 src/falckoin-cli
 src/falckoind
-
+src/qt/falckoin-qt

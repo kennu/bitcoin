@@ -165,9 +165,9 @@ void Intro::pickDataDirectory(bool fIsTestnet)
         Intro intro;
         intro.setDataDirectory(dataDir);
         if (!fIsTestnet)
-            intro.setWindowIcon(QIcon(":icons/falckoin"));
+            intro.setWindowIcon(QIcon(":icons/bitcoin"));
         else
-            intro.setWindowIcon(QIcon(":icons/falckoin_testnet"));
+            intro.setWindowIcon(QIcon(":icons/bitcoin_testnet"));
 
         while(true)
         {
